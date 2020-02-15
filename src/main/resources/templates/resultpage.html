@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+<body class="text-center">
+<div class="container">
+    <h2 align="center">Days vs Infected Estimation</h2>
+
+    <div id="container"
+         style="width: 550px; height: 400px; margin: 0 auto"></div>
+</div>
+<script type="text/javascript" th:inline="javascript">
+    Highcharts.chart('container', {
+        title: {
+            text: 'Scatter plot with regression line'
+        },
+        xAxis: {
+            min: 0
+        },
+        yAxis: {
+            min: 0
+        },
+        series: [{
+            type: 'line',
+            name: 'Regression Line',
+            data:[
+                [
+                    [[${x0}]], [[${y0}]]
+                ],
+                [
+                    [[${xf}]], [[${yf}]]
+                ]
+            ],
+            marker: {
+                //enabled: false
+            },
+            states: {
+                hover: {
+                    lineWidth: 0
+                }
+            },
+            enableMouseTracking: false
+        }, {
+            type: 'scatter',
+            name: 'Observations',
+            data: [[${map.values()}]],
+            marker: {
+                radius: 4
+            }
+        }]
+    });
+
+
+
+</script>
+<div class="jumbotron col-sm-8 col-md-8 col-lg-6 col-xl-4 container-fluid">
+<h5 class="lead" th:text="|Estymowana wartość ${result.estimatedValue}|"></h5>
+<h5 class="lead" th:text="|Slope:${result.slope}|"></h5>
+<h5 class="lead" th:text="|Intercept:${result.intercept}|"></h5>
+</div>
+
+</body>
+</html>

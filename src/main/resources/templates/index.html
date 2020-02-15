@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Corona Virus Prediction Calculator </title>
+</head>
+<body class="text-center">
+<div class="jumbotron col-sm-8 col-md-8 col-lg-6 col-xl-4 container-fluid">
+<form th:method="post" th:action="@{/calculate}">
+    <div class="form-group">
+        <label for="datepick">Wybierz datę do estymacji</label>
+    <input type="date" th:name="date" id="datepick" class="form-control" required>
+    </div>
+    <input type="submit" value="Wyślij" class="btn btn-primary">
+</form>
+</div>
+</body>
+</html>
