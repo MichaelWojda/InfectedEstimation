@@ -54,7 +54,7 @@ public class Crawler {
             text = text.replaceAll(",","");
             return Integer.parseInt(text);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
